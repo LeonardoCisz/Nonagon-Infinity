@@ -1,5 +1,6 @@
 package app;
 
+import dao.ConnectionFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,8 +15,9 @@ public class InterfaceMain extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("model/test.fxml"));
-		arg0.setScene(new Scene(root, 300, 275));
+		ConnectionFactory.getConnection();
+		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("model/login.fxml"));
+		arg0.setScene(new Scene(root));
 		arg0.show();
 	}
 

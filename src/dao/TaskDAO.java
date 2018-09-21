@@ -3,6 +3,7 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -111,6 +112,28 @@ public class TaskDAO extends baseDAO{
             throw new RuntimeException(e);
         }
         return tarefa;
+    }
+    
+    public Task getByUsernameAndPassword(String username, String password) {
+    	final String sql = "SELECT * FROM USER WHERE NAME=? AND PASSWORD=?";
+    	try(Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)) {
+    		statement.setString(1, username);
+    		statement.setString(2, password);
+    		final ResultSet rs = statement.executeQuery();
+    		if(rs.next()) {
+    			Task task = new Task();
+    			task.setId(rs.getInt("ID"));
+    			task.setName(rs.getString("NAME"));
+    			task.setDesc(rs.getString("PASSWORD"));
+    			return task;
+    		}
+    		
+    	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
     }
 
 }

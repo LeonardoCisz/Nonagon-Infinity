@@ -14,7 +14,7 @@ public class ConnectionFactory {
 	private final static String dataBaseUser = "root";
 	private final static String dataBasePassword = "root";
 
-	static Connection getConnection() {
+	public static Connection getConnection() {
 		try {
 			return DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s?useTimezone=true&serverTimezone=UTC&autoReconnect=true&useSSL=false", dataBaseName), dataBaseUser,
 					dataBasePassword);
