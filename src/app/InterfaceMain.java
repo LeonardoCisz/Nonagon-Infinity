@@ -16,7 +16,7 @@ public class InterfaceMain extends Application {
 	@Override
 	public void start(Stage arg0) throws Exception {
 		ConnectionFactory.getConnection();
-		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("model/login.fxml"));
+		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("telas/login.fxml"));
 		arg0.setScene(new Scene(root));
 		arg0.show();
 	}

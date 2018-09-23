@@ -1,6 +1,6 @@
 package app;
 
-import dao.TaskDAO;
+import dao.UserDAO;
 import entity.Task;
 
 public class Main {
@@ -12,11 +12,8 @@ public class Main {
 		task.setName("Matar o magnetico");
 		task.setDesc("Descrevendo como matar o magnetico");
 		
-		TaskDAO dao = new TaskDAO();
+		UserDAO dao = new UserDAO();
 		
-		for(Task x : dao.getAll()) {
-			System.out.println(x);
-		}
-	}
 
+	}
 }

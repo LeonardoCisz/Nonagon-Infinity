@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3C6A80;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginController">
+   <children>
+      <Button fx:id="loginButton" layoutX="256.0" layoutY="275.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="88.0" text="Login" />
+      <Label layoutX="233.0" layoutY="41.0" prefHeight="17.0" prefWidth="134.0" text="Infinity" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="156.0" layoutY="135.0" text="Nickname" textFill="WHITE" />
+      <Label layoutX="157.0" layoutY="202.0" text="Password" textFill="WHITE" />
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" />
+      <Button fx:id="registerButton" onAction="#registrar" layoutX="489.0" layoutY="361.0" mnemonicParsing="false" text="Register here!" />
+      <TextField fx:id="nicknameField" layoutX="156.0" layoutY="152.0" prefHeight="33.0" prefWidth="288.0" promptText="Username" />
+      <PasswordField fx:id="passFIeld" layoutX="157.0" layoutY="219.0" prefHeight="33.0" prefWidth="288.0" promptText="Password" />
+   </children>
+</Pane>
