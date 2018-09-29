@@ -10,7 +10,7 @@ public class ConnectionFactory {
 	 * Configurações com o banco de dados Mysql
 	 */
 
-	private final static String dataBaseName = "justdoit";
+	private final static String dataBaseName = "infinity";
 	private final static String dataBaseUser = "root";
 	private final static String dataBasePassword = "root";
 

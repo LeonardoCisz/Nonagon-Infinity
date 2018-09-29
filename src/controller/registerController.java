@@ -1,23 +1,29 @@
 package controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import authentication.NullFieldException;
+import authentication.PasswordNotMatchException;
+import authentication.userAlreadyExistException;
+import dao.ConnectionFactory;
 import dao.UserDAO;
 import entity.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import telas.NullFieldException;
-import telas.PasswordNotMatchException;
 import telas.ScreenUtil;
 import telas.mapa;
 
 public class registerController {
 	
 	@FXML
-	private TextField regName;
-	@FXML
 	private TextField regNick;
 	@FXML
-	private PasswordField regPassword;
+	private PasswordField regPass;
 	@FXML
 	private PasswordField regConfirmPass;
 	
@@ -27,34 +33,69 @@ public class registerController {
 	}
 
     @FXML
-    private void register() {
+    private void register() throws NullFieldException, PasswordNotMatchException {
     	
-    	System.out.println("User tomo na jabiroca");
+		try {
+			CheckUserBanco(regNick.getText());
+		} catch (userAlreadyExistException | SQLException e1) {
+			e1.printStackTrace();
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setHeaderText(null);
+            alert.setTitle("Erro");
+	        alert.setContentText("Já existe um usuário com esse nick");
+	        alert.showAndWait();
+			return;
+		}
     	
-    	//    		validateFields();
-		//            validatePassword();
-		            UserDAO dao = UserDAO.getInstance();
-		            User user = new User();
-		            user.setUsername(regNick.getText());
-		            user.setPassword(regPassword.getText());
-		            dao.salvar(user);
-		//            backlogin();
-		//            
-		//        } catch (NullFieldException e) {
-		//            System.out.println(e.getMessage());
+    	try {
+    		
+    		if (regNick.getText().equals("") || regPass.getText().equals("") || regConfirmPass.getText().equals("")) {
+    			throw new NullFieldException("Campo em branco"); 
+    		}
+    	} catch(NullFieldException e) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setHeaderText(null);
+            alert.setTitle("Erro");
+	        alert.setContentText("Deixou um campo em branco");
+	        alert.showAndWait();
+	        return;
+    	}
+    	try {
+    	
+    	if(!regPass.getText().equals(regConfirmPass.getText())) {
+    		throw new PasswordNotMatchException("Senhas diferentes");
+    		}
+    	}
+    	catch(PasswordNotMatchException e) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setHeaderText(null);
+            alert.setTitle("Erro");
+	        alert.setContentText("As senhas digitadas são diferentes");
+	        alert.showAndWait();
+	        return;
+    	}
+    	UserDAO dao = UserDAO.getInstance();
+    	User user = new User();
+    	user.setUsername(regNick.getText());
+    	user.setPassword(regPass.getText());
+    	dao.salvar(user);
+    	back();
     }
-	
-//	private void validateFields() throws {
-//		ScreenUtil.getInstance().validateTextField(regName);
-//		ScreenUtil.getInstance().validateTextField(regNick);
-//		ScreenUtil.getInstance().validateTextField(regPassword);
-//		ScreenUtil.getInstance().validateTextField(regConfirmPass);
-//	}
-	
-    private void validatePassword() throws PasswordNotMatchException {
-        if (!regPassword.getText().equals(regConfirmPass.getText())) {
-            throw new PasswordNotMatchException("Senhas diferentes! As senhas precisam ser iguais.");
-        }
+    @FXML
+	private void back() {
+		ScreenUtil.getInstance().showScreen(mapa.login_fxml);
+	}
+    
+    private static void CheckUserBanco(String regNick) throws userAlreadyExistException, SQLException {
+			Connection connection = ConnectionFactory.getConnection();
+	        PreparedStatement st = connection.prepareStatement("select 1 from user where name=?");
+	        st.setString(1, regNick);
+	        ResultSet r1=st.executeQuery();
+	         if(r1.next()) 
+	         {
+	        	 throw new userAlreadyExistException("Usuário já existe");
+	         }
     }
-
+ 
 }
+	         

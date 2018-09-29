@@ -1,14 +1,15 @@
 package controller;
 
 import authentication.AuthException;
+import authentication.NullFieldException;
 import authentication.UserAuthentication;
 import dao.UserDAO;
+import entity.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import telas.NullFieldException;
 import telas.ScreenUtil;
 import telas.mapa;
 
@@ -29,6 +30,11 @@ public class loginController{
 			//validateFields();
 			UserAuthentication auth = new UserAuthentication(UserDAO.getInstance());
 			auth.auth(nicknameField.getText(), passFIeld.getText());
+			UserDAO dao = new UserDAO();
+			User user = dao.getByUsernameAndPassword(nicknameField.getText(), passFIeld.getText()); //isso eh um user
+			if (user != null)
+			System.out.println("Usuario logado " + user.getName());
+			ScreenUtil.getInstance().showScreen(mapa.interface_fxml);
 		}catch(AuthException e) {
 			System.out.println(e.getMessage());
 			Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -44,21 +50,16 @@ public class loginController{
 	@FXML
 	private void registrar() {
 		System.out.println("Tentou aqui");
+		
 		ScreenUtil.getInstance().showScreen(mapa.register_fxml);
 		}
 	
+	@FXML
+	public void show() {
+		ScreenUtil.getInstance().showScreen(mapa.login_fxml);
+	}
 	
-	
-	
-	
-	
-//	Login
-//	@FXML
-//	private void login() {
-//		UserDAO dao = new UserDAO();
-//		User user = dao.getByUsernameAndPassword(nicknameField.getText(), passFIeld.getText()); //isso eh um user
-//		if (user != null)
-//			System.out.println("Usuario logado " + user.getName());
-//	}
+
+
 
 }

@@ -3,7 +3,7 @@ package entity;
 public class Task {
 
 	private long id;
-	private String name;
+	private String Name;
 	private String Desc;
 
 	public long getId() {
@@ -15,11 +15,11 @@ public class Task {
 	}
 
 	public String getName() {
-		return name;
+		return Name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.Name = Name;
 	}
 
 	public String getDesc() {
@@ -32,7 +32,7 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "User{" + "id=" + id + ", name='" + name + '\'' + ", descricao'" + Desc + '\'' + '}';
+		return "User{" + "id=" + id + ", name='" + Name + '\'' + ", descricao'" + Desc + '\'' + '}';
 	}
 
 }
