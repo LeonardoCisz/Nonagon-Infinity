@@ -1,20 +1,23 @@
 package util;
 
+import java.util.List;
+
+import entity.Task;
 import javafx.beans.property.SimpleStringProperty;
 
 public class taskViwer {
 
-    private int id;
+    private long id;
     private SimpleStringProperty nometarefa;
     private SimpleStringProperty conteudotarefa;
 
-    public taskViwer(Long id, String Name, String conteudotarefa) {
+    public taskViwer(long l, String Name, String conteudotarefa) {
         this.nometarefa = new SimpleStringProperty(Name);
         this.conteudotarefa = new SimpleStringProperty(conteudotarefa);
-        this.id = id;
+        this.id = l;
     }
 
-    public String getNometarefa() {
+	public String getNometarefa() {
         return nometarefa.get();
     }
 
@@ -22,7 +25,7 @@ public class taskViwer {
         return conteudotarefa.get();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

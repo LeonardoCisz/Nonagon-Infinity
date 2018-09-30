@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
+xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.editTaskController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #39525e;">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="49.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/119999_arrows_512x512.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="190.0" layoutY="14.0" text="Edite a sua tarefa" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nometarefa2" layoutX="39.0" layoutY="81.0" prefHeight="39.0" prefWidth="539.0" promptText="Nome da tarefa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextArea fx:id="textotarefa2" layoutX="39.0" layoutY="144.0" prefHeight="140.0" prefWidth="539.0" promptText="Descrição">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextArea>
+            <Button fx:id="salvartarefa2" layoutX="124.0" layoutY="322.0" mnemonicParsing="false" onAction="#saveTask2" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #39525e;" text="Salvar" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancelarTarefa2" layoutX="360.0" layoutY="322.0" mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #39525e;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

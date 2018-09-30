@@ -3,8 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
+import app.InterfaceMain;
 import app.Main;
 import dao.taskDAO;
 import javafx.collections.FXCollections;
@@ -18,6 +17,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import telas.ScreenUtil;
+import telas.mapa;
+import util.taskAdapter;
 import util.taskViwer;
 
 
@@ -34,12 +36,13 @@ public class interfaceController implements Initializable {
 
 
     @Override
+    //TODO TA COM PAU ESTA MERDA!!!!1
     public void initialize(URL location, ResourceBundle resources) {
 
         taskDAO dao = new taskDAO();
         final ObservableList<taskViwer> listaTarefas = FXCollections
                 .observableList(
-                		taskViwer.adaptarTodosParaView(dao.getTarefas()
+                		taskAdapter.adaptarTodosParaView(dao.getTarefas()
                         )
                 );
 
@@ -50,43 +53,49 @@ public class interfaceController implements Initializable {
 
         listatarefas.setItems(listaTarefas);
     }
-
+    
     @FXML
-    public void homehome() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("index.fxml"));
-        Main.stage.setScene(new Scene(root, 800, 500));
-    }
-
+    private void includeTask() {
+		System.out.println("Tentou aqui");
+		
+		ScreenUtil.getInstance().showScreen(mapa.includeTask_fxml);
+		}
+    
     @FXML
-    public void incluirtarefa3() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("IncluirTarefa.fxml"));
-        Main.stage.setScene(new Scene(root, 800, 500));
+    public void editarTarefa() throws IOException {
+    	
+    	ScreenUtil.getInstance().showScreen(mapa.editTask_fxml);
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarTarefa.fxml"));
+//        Parent root = loader.load();
+//        editTaskController editar = loader.getController();
+//        taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
+//        
+//        editar.load(taskAdapter.adaptarViewParaTarefa(tView));
     }
 
-
-    @FXML
-    public void editartarefa() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarTarefa.fxml"));
-        Parent root = loader.load();
-        EditarTarefaController editar = loader.getController();
-        taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
-        Main.stage.setScene(new Scene(root, 800, 500));
-        editar.load(tarefaAdapter.adaptarViewParaTarefa(tView));
-    }
-
-    @FXML
-    public void deletartarefa() throws IOException {
-
-    	taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
-        taskDAO dao = new taskDAO();
-        dao.deleteTarefa(tView.getId());
-        reload();
-        JOptionPane.showMessageDialog(null, "Informacoes deletadas com sucesso");
-    }
-
-    public void reload() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ListaTarefas.fxml"));
-        Main.stage.setScene(new Scene(root, 800, 500));
-    }
+//    @FXML
+//    public void editartarefa() throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarTarefa.fxml"));
+//        Parent root = loader.load();
+//        EditarTarefaController editar = loader.getController();
+//        taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
+//        Main.stage.setScene(new Scene(root, 800, 500));
+//        editar.load(tarefaAdapter.adaptarViewParaTarefa(tView));
+//    }
+//
+//    @FXML
+//    public void deletartarefa() throws IOException {
+//
+//    	taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
+//        taskDAO dao = new taskDAO();
+//        dao.deleteTarefa(tView.getId());
+//        reload();
+//        JOptionPane.showMessageDialog(null, "Informacoes deletadas com sucesso");
+//    }
+//
+//    public void reload() throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("ListaTarefas.fxml"));
+//        Main.stage.setScene(new Scene(root, 800, 500));
+//    }
 
 }
