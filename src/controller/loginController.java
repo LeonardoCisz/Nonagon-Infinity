@@ -32,9 +32,11 @@ public class loginController{
 			auth.auth(nicknameField.getText(), passFIeld.getText());
 			UserDAO dao = new UserDAO();
 			User user = dao.getByUsernameAndPassword(nicknameField.getText(), passFIeld.getText()); //isso eh um user
-			if (user != null)
-			System.out.println("Usuario logado " + user.getName());
-			ScreenUtil.getInstance().showScreen(mapa.interface_fxml);
+			if (user != null) {
+				System.out.println("Usuario logado " + user.getName());
+				interfaceController.userLogado = user;
+				ScreenUtil.getInstance().showScreen(mapa.interface_fxml);
+			}
 		}catch(AuthException e) {
 			System.out.println(e.getMessage());
 			Alert alert = new Alert(Alert.AlertType.WARNING);

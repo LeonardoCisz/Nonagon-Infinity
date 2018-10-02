@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.includeTaskController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" 
+xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.saveTaskController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #39525e;">
          <children>
@@ -39,7 +40,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="salvartarefa" layoutX="124.0" layoutY="322.0" mnemonicParsing="false" onAction="#insertTask" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #39525e;" text="Salvar" textFill="WHITE">
+            <Button fx:id="salvartarefa" layoutX="124.0" layoutY="322.0" mnemonicParsing="false" onAction="#saveTask" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #39525e;" text="Salvar" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>

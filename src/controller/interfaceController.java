@@ -3,9 +3,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import app.InterfaceMain;
-import app.Main;
+import javax.swing.JOptionPane;
+
 import dao.taskDAO;
+import entity.Task;
+import entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import telas.ScreenUtil;
 import telas.mapa;
 import util.taskAdapter;
@@ -26,7 +29,7 @@ import util.taskViwer;
 public class interfaceController implements Initializable {
 
     @FXML
-    private TableView listatarefas;
+    private TableView<taskViwer> listatarefas;
     @FXML
     private Button includeTask ;
     @FXML
@@ -34,6 +37,7 @@ public class interfaceController implements Initializable {
     @FXML
     private Button  excludeTask;
 
+    public static User userLogado;
 
     @Override
     //TODO TA COM PAU ESTA MERDA!!!!1
@@ -42,7 +46,7 @@ public class interfaceController implements Initializable {
         taskDAO dao = new taskDAO();
         final ObservableList<taskViwer> listaTarefas = FXCollections
                 .observableList(
-                		taskAdapter.adaptarTodosParaView(dao.getTarefas()
+                		taskAdapter.adaptarTodosParaView(dao.getTarefas(userLogado.getId())
                         )
                 );
 
@@ -63,39 +67,32 @@ public class interfaceController implements Initializable {
     
     @FXML
     public void editarTarefa() throws IOException {
-    	
-    	ScreenUtil.getInstance().showScreen(mapa.editTask_fxml);
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarTarefa.fxml"));
-//        Parent root = loader.load();
-//        editTaskController editar = loader.getController();
-//        taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
-//        
-//        editar.load(taskAdapter.adaptarViewParaTarefa(tView));
+    	taskViwer v = listatarefas.getSelectionModel().getSelectedItem();
+    	showEdit(taskAdapter.adaptarViewParaTarefa(v));
     }
 
-//    @FXML
-//    public void editartarefa() throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarTarefa.fxml"));
-//        Parent root = loader.load();
-//        EditarTarefaController editar = loader.getController();
-//        taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
-//        Main.stage.setScene(new Scene(root, 800, 500));
-//        editar.load(tarefaAdapter.adaptarViewParaTarefa(tView));
-//    }
-//
-//    @FXML
-//    public void deletartarefa() throws IOException {
-//
-//    	taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
-//        taskDAO dao = new taskDAO();
-//        dao.deleteTarefa(tView.getId());
-//        reload();
-//        JOptionPane.showMessageDialog(null, "Informacoes deletadas com sucesso");
-//    }
-//
-//    public void reload() throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("ListaTarefas.fxml"));
-//        Main.stage.setScene(new Scene(root, 800, 500));
-//    }
 
+    @FXML
+    public void deletTask() throws IOException {
+
+    	taskViwer tView = (taskViwer) listatarefas.getSelectionModel().getSelectedItem();
+        taskDAO dao = new taskDAO();
+        dao.deleteTarefa(tView.getId());
+        reload();
+        JOptionPane.showMessageDialog(null, "Informacoes deletadas com sucesso");
+    }
+    
+    private void showEdit(Task t) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("telas/telasFXML/IncludeTask.fxml"));
+    	Parent root = loader.load();
+    	saveTaskController controller = loader.getController();
+    	controller.receiveTask(t);
+    	Stage stage = ScreenUtil.getInstance().getStage();
+    	stage.setScene(new Scene(root));
+		stage.show();
+    }
+
+    public void reload() {
+    	ScreenUtil.getInstance().showScreen(mapa.interface_fxml);
+    }
 }

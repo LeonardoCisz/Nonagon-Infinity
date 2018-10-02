@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro8.JMetro;
 
 
 public class ScreenUtil {
@@ -27,12 +28,15 @@ public class ScreenUtil {
     public void showScreen(String path) {
     	try {
     		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(path));
+    		//new JMetro(JMetro.Style.LIGHT).applyTheme(root);
     		stage.setScene(new Scene(root));
     		stage.show();
     	}catch(IOException e) {
     		e.printStackTrace();
     	}
     }
+    
+   
     public void newScreen(String path) {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(path));
@@ -48,6 +52,10 @@ public class ScreenUtil {
         if (textField.getText().equals("")) {
             throw new NullFieldException("The TextField " + textField.getId() + " is not filled.");
         }
+    }
+    
+    public Stage getStage() {
+    	return stage;
     }
     
 }

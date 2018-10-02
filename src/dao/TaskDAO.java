@@ -23,22 +23,23 @@ public class taskDAO extends baseDAO{
 	}
 	
 	public void insertTarefa(Task task) {
-		final String sql = "INSERT INTO TASK(NAME,DESCRICAO) VALUES(?,?)";
+		final String sql = "INSERT INTO TASK(NAME,DESCRICAO, DONO) VALUES(?,?, ?)";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, task.getName());
 			stmt.setString(2, task.getDesc());
+			stmt.setInt(3, task.getDono());
 			stmt.execute();
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	   public void deleteTarefa(int id) {
+	   public void deleteTarefa(long l) {
 	        try {
 	            Connection conn = ConnectionFactory.getConnection();
-	            PreparedStatement p = conn.prepareStatement("delete from tarefa where id=?");
-	            p.setLong(1, id);
+	            PreparedStatement p = conn.prepareStatement("delete from task where id=?");
+	            p.setLong(1, l);
 	            p.execute();
 	            p.close();
 	            conn.close();
@@ -50,7 +51,7 @@ public class taskDAO extends baseDAO{
 	    public void updateTarefa(Task t) {
 	        try {
 	            Connection conn = ConnectionFactory.getConnection();
-	            PreparedStatement p = conn.prepareStatement("update tarefa set nametarefa=?, textotarefa=? where idtarefa=?");
+	            PreparedStatement p = conn.prepareStatement("update task set name=?, descricao=? where id=?");
 	            p.setString(1, t.getName());
 	            p.setString(2, t.getDesc());
 	            p.setLong(3, t.getId());	
@@ -62,18 +63,19 @@ public class taskDAO extends baseDAO{
 	        }
 	    }
 	    
-	    public List<Task> getTarefas() {
+	    public List<Task> getTarefas(Integer dono) {
 	        Connection conn = ConnectionFactory.getConnection();
 	        List<Task> todasTarefas = null;
 	        try {
-	            PreparedStatement p = conn.prepareStatement("SELECT * FROM task");
+	            PreparedStatement p = conn.prepareStatement("SELECT * FROM task where dono = ?");
+	            p.setInt(1, dono);
 	            ResultSet rs = p.executeQuery();
 	            todasTarefas = new ArrayList<>();
 	            while (rs.next()) {
 	                Task t = new Task();
-	                t.setId(rs.getInt("idtarefa"));
-	                t.setName(rs.getString("nametarefa"));
-	                t.setDesc(rs.getString("textotarefa"));
+	                t.setId(rs.getInt("ID"));
+	                t.setName(rs.getString("NAME"));
+	                t.setDesc(rs.getString("DESCRICAO"));
 	                todasTarefas.add(t);
 	            }
 	        } catch (SQLException e) {

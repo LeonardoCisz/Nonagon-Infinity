@@ -5,6 +5,7 @@ public class Task {
 	private long id;
 	private String Name;
 	private String Desc;
+	private Integer dono;
 
 	public long getId() {
 		return id;
@@ -19,7 +20,7 @@ public class Task {
 	}
 
 	public void setName(String name) {
-		this.Name = Name;
+		this.Name = name;
 	}
 
 	public String getDesc() {
@@ -33,6 +34,14 @@ public class Task {
 	@Override
 	public String toString() {
 		return "User{" + "id=" + id + ", name='" + Name + '\'' + ", descricao'" + Desc + '\'' + '}';
+	}
+
+	public Integer getDono() {
+		return dono;
+	}
+	
+	public void setDono(Integer dono) {
+		this.dono = dono;
 	}
 
 }

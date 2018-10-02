@@ -20,7 +20,7 @@
                 <Font size="36.0" />
             </font>
         </Label>
-      <Button fx:id="excluirtarefa" layoutX="586.0" layoutY="417.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #39525e;" text="Excluir" textFill="WHITE">
+      <Button fx:id="excluirtarefa" layoutX="586.0" layoutY="417.0" onAction="#deletTask" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #39525e;" text="Excluir" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

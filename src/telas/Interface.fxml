@@ -7,11 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
- prefWidth="800.0" style="-fx-background-color: #39525e;" xmlns="http://javafx.com/javafx/10.
- 0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.interfaceController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #39525e;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InterfaceController">
     <children>
-        <Button fx:id="editartarefa" layoutX="431.0" layoutY="417.0" mnemonicParsing="false" onAction="#editarTarefa" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #39525e;" text="Editar" textFill="WHITE">
+        <Button fx:id="editTask" layoutX="431.0" layoutY="417.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #39525e;" text="Editar" textFill="WHITE">
             <font>
                 <Font size="20.0" />
             </font></Button>
@@ -20,7 +18,7 @@
                 <Font size="36.0" />
             </font>
         </Label>
-      <Button fx:id="excluirtarefa" layoutX="586.0" layoutY="417.0" onAction="#deletTask" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #39525e;" text="Excluir" textFill="WHITE">
+      <Button fx:id="excludeTask" layoutX="586.0" layoutY="417.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #39525e;" text="Excluir" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
@@ -30,7 +28,7 @@
             <TableColumn fx:id="nometarefa" prefWidth="134.99996948242188" text="Nome Tarefa" />
             <TableColumn fx:id="conteudotarefa" minWidth="0.0" prefWidth="541.0" text="Conteudo Tarefa" />
          </columns></TableView>
-      <Button fx:id="incluirtarefa" layoutX="276.0" layoutY="417.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #39525e;" text="Incluir" onAction="#includeTask" textFill="WHITE">
+      <Button fx:id="includeTask" layoutX="276.0" layoutY="417.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #39525e;" text="Incluir" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
