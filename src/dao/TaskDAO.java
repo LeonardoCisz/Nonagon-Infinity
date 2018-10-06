@@ -82,5 +82,7 @@ public class taskDAO extends baseDAO{
 	            e.printStackTrace();
 	        }
 	        return todasTarefas;
+	        
 	    }
+	
 }

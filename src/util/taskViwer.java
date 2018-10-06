@@ -1,8 +1,5 @@
 package util;
 
-import java.util.List;
-
-import entity.Task;
 import javafx.beans.property.SimpleStringProperty;
 
 public class taskViwer {

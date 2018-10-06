@@ -5,11 +5,13 @@ public class Task {
 	private long id;
 	private String Name;
 	private String Desc;
-	private Integer dono;
+	private Integer dono; 
 
+	
 	public long getId() {
 		return id;
 	}
+
 
 	public void setId(long id) {
 		this.id = id;
